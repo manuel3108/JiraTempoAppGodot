@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3xofltp22i2c"]
+
+[ext_resource type="Script" path="res://JiraLoginButton.cs" id="1_2ys6g"]
+[ext_resource type="Script" path="res://Main.cs" id="1_pul7a"]
+[ext_resource type="Script" path="res://FetchDataButton.cs" id="2_aqoub"]
+
+[node name="CenterContainer" type="CenterContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pul7a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="JiraLoginButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Jira Login"
+script = ExtResource("1_2ys6g")
+
+[node name="FetchDataButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Fetch Data Button"
+script = ExtResource("2_aqoub")
+LabelPath = NodePath("../../Label")
+SearchTextEditPath = NodePath("../../LineEdit")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "asd"

@@ -11,8 +11,16 @@ config_version=5
 [application]
 
 config/name="JiraTempoAppGodot"
-config/features=PackedStringArray("4.1", "Mobile")
+run/main_scene="res://Main.tscn"
+config/features=PackedStringArray("4.1", "C#", "Mobile")
+run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=16000
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1100
+window/size/viewport_height=900
 
 [dotnet]
 
