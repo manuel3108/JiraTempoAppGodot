@@ -34,5 +34,17 @@ public partial class FetchDataButton : Button
 
         var label = GetNode<Label>(LabelPath);
         label.Text = foundIssueKeys;
+
+        // var tempoClient = new TempoClient(new HttpClient());
+        // tempoClient.
+        // var test = tempoClient.GetWorklogsAsync(null, null, "2021-09-29", "2023-09-29", "2021-09-29", null, null, null).Result;
+
+        httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", settings.Tempo.AccessToken);
+        var tempoUrl = "https://api.tempo.io/4/worklogs?from=2022-01-28&to=2024-02-03";
+        response = httpClient.GetAsync(tempoUrl).Result;
+        dataContent = response.Content;
+        stringData = dataContent.ReadAsStringAsync().Result;
+        GD.Print(stringData);
     }
 }

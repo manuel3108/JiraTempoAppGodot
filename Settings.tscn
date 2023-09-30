@@ -1,0 +1,120 @@
+[gd_scene load_steps=5 format=3 uid="uid://ba0oi8hq5t6od"]
+
+[ext_resource type="Script" path="res://JiraLoginButton.cs" id="1_71v4r"]
+[ext_resource type="Script" path="res://SettingsWindow.cs" id="1_n8jjf"]
+[ext_resource type="Script" path="res://FetchDataButton.cs" id="2_h3i0o"]
+[ext_resource type="Script" path="res://TempoLoginButton.cs" id="3_bf4yu"]
+
+[node name="PanelContainer" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_n8jjf")
+CloseWindowButtonNodePath = NodePath("ScrollContainer/VBoxContainer/CloseButton")
+JiraClientIdNodePath = NodePath("ScrollContainer/VBoxContainer/Jira ClientId/LineEdit")
+JiraClientSecretNodePath = NodePath("ScrollContainer/VBoxContainer/Jira ClientSecret/LineEdit")
+TempoClientIdNodePath = NodePath("ScrollContainer/VBoxContainer/Tempo ClientId/LineEdit")
+TempoClientSecretNodePath = NodePath("ScrollContainer/VBoxContainer/Tempo ClientSecret/LineEdit")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Settings Text" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "My Settings"
+
+[node name="Jira Settigns Text" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Jira Settings"
+
+[node name="Jira ClientId" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Jira ClientId"]
+layout_mode = 2
+text = "ClientId "
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Jira ClientId"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Jira ClientSecret" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Jira ClientSecret"]
+layout_mode = 2
+text = "ClientSecret"
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Jira ClientSecret"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tempo Settigns Text" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tempo Settings"
+
+[node name="Tempo ClientId" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Tempo ClientId"]
+layout_mode = 2
+text = "ClientId "
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Tempo ClientId"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tempo ClientSecret" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Tempo ClientSecret"]
+layout_mode = 2
+text = "ClientSecret"
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Tempo ClientSecret"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="JiraLoginButton" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Jira Login"
+script = ExtResource("1_71v4r")
+
+[node name="FetchDataButton" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Fetch Data Button"
+script = ExtResource("2_h3i0o")
+LabelPath = NodePath("../../Label")
+SearchTextEditPath = NodePath("../../LineEdit")
+
+[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Test"
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "asd"
+
+[node name="TempoLoginButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tempo Login"
+script = ExtResource("3_bf4yu")
+
+[node name="CloseButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Close"

@@ -1,39 +1,34 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3xofltp22i2c"]
+[gd_scene load_steps=5 format=3 uid="uid://b3xofltp22i2c"]
 
-[ext_resource type="Script" path="res://JiraLoginButton.cs" id="1_2ys6g"]
-[ext_resource type="Script" path="res://Main.cs" id="1_pul7a"]
-[ext_resource type="Script" path="res://FetchDataButton.cs" id="2_aqoub"]
+[ext_resource type="Theme" uid="uid://tgo5filkwsei" path="res://theme.tres" id="1_ymnkf"]
+[ext_resource type="PackedScene" uid="uid://ba0oi8hq5t6od" path="res://Settings.tscn" id="3_asuod"]
+[ext_resource type="Script" path="res://OpenSettingsButton.cs" id="4_rpdin"]
 
-[node name="CenterContainer" type="CenterContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ir2w"]
+bg_color = Color(0.184314, 0.184314, 0.184314, 1)
+
+[node name="Node" type="Node"]
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_pul7a")
+theme = ExtResource("1_ymnkf")
+theme_override_styles/panel = SubResource("StyleBoxFlat_4ir2w")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="PanelContainer"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="PanelContainer/CenterContainer"]
 layout_mode = 2
+text = "Open Settings"
+script = ExtResource("4_rpdin")
+SettingsNodePath = NodePath("../../../Settings")
 
-[node name="JiraLoginButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Jira Login"
-script = ExtResource("1_2ys6g")
-
-[node name="FetchDataButton" type="Button" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Fetch Data Button"
-script = ExtResource("2_aqoub")
-LabelPath = NodePath("../../Label")
-SearchTextEditPath = NodePath("../../LineEdit")
-
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
-layout_mode = 2
-text = "Test"
-
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "asd"
+[node name="Settings" parent="." instance=ExtResource("3_asuod")]
+visible = false
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_ymnkf")
