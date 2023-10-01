@@ -6,8 +6,8 @@ namespace JiraTempoAppGodot;
 public class Settings
 {
     private const string FilePath = "settings.json";
-    public JiraSettings Jira { get; set; } = new();
-    public TempoSettings Tempo { get; set; } = new();
+    public JiraSettings Jira { get; } = new();
+    public TempoSettings Tempo { get; } = new();
 
     public static Settings Load()
     {

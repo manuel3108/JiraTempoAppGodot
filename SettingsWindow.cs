@@ -1,13 +1,22 @@
 using Godot;
-using JiraTempoAppGodot;
+
+namespace JiraTempoAppGodot;
 
 public partial class SettingsWindow : PanelContainer
 {
     [Export] public NodePath CloseWindowButtonNodePath;
+    [Export] public NodePath JiraAccessTokenNodePath;
     [Export] public NodePath JiraClientIdNodePath;
     [Export] public NodePath JiraClientSecretNodePath;
+    [Export] public NodePath JiraCloudIdNodePath;
+    [Export] public NodePath JiraDomainNodePath;
+    [Export] public NodePath JiraExpiresInNodePath;
+    [Export] public NodePath JiraRefreshTokenNodePath;
+    [Export] public NodePath TempoAccessTokenNodePath;
     [Export] public NodePath TempoClientIdNodePath;
     [Export] public NodePath TempoClientSecretNodePath;
+    [Export] public NodePath TempoExpiresInNodePath;
+    [Export] public NodePath TempoRefreshTokenNodePath;
 
     public override void _Ready()
     {
@@ -31,8 +40,17 @@ public partial class SettingsWindow : PanelContainer
             // load settings
             SetLineEditValue(JiraClientIdNodePath, settings.Jira.ClientId);
             SetLineEditValue(JiraClientSecretNodePath, settings.Jira.ClientSecret);
+            SetLineEditValue(JiraAccessTokenNodePath, settings.Jira.AccessToken);
+            SetLineEditValue(JiraRefreshTokenNodePath, settings.Jira.RefreshToken);
+            SetLineEditValue(JiraExpiresInNodePath, settings.Jira.ExpiresIn.ToString());
+            SetLineEditValue(JiraCloudIdNodePath, settings.Jira.CloudId);
+            SetLineEditValue(JiraDomainNodePath, settings.Jira.Domain);
+
             SetLineEditValue(TempoClientIdNodePath, settings.Tempo.ClientId);
             SetLineEditValue(TempoClientSecretNodePath, settings.Tempo.ClientSecret);
+            SetLineEditValue(TempoAccessTokenNodePath, settings.Tempo.AccessToken);
+            SetLineEditValue(TempoRefreshTokenNodePath, settings.Tempo.RefreshToken);
+            SetLineEditValue(TempoExpiresInNodePath, settings.Tempo.ExpiresIn.ToString());
         }
         else
         {

@@ -1,7 +1,19 @@
 using Godot;
+using JiraTempoAppGodot.Services;
+using HttpClient = System.Net.Http.HttpClient;
 
-public partial class Main : CenterContainer
+namespace JiraTempoAppGodot;
+
+public partial class Main : Node
 {
+    public Main()
+    {
+        var httpClient = new HttpClient();
+
+        ServiceCollection.Add(new JiraService(httpClient));
+        ServiceCollection.Add(new TempoService(httpClient));
+    }
+
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {

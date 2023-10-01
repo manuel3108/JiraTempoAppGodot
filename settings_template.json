@@ -1,0 +1,18 @@
+{
+  "Jira": {
+    "AccessToken": null,
+    "ExpiresIn": 0,
+    "RefreshToken": null,
+    "ClientId": "hm9gBmGiHZWc8o2jJL0sstAHmqIaev7C",
+    "ClientSecret": "ATOARcjjOi5Hqj1W5wUl2hP3a3OglOVxUcuaDSEUnyj2GZFxfKfvfMvAdSW9pM8R5iWo6A1A713E",
+    "CloudId": null,
+    "Domain": null
+  },
+  "Tempo": {
+    "AccessToken": null,
+    "ExpiresIn": 0,
+    "RefreshToken": null,
+    "ClientId": "69UHWjRPlSHY2gjbdX6ZuPEZQUFtcxWiS5O9kL5ycDfUdxnazM",
+    "ClientSecret": "NvaLHiRJ87UBBJrboSmkx9JREsMPr6l420wqEUFVsZSpalxp8rRptTl6zedjQkboCEJ3EIIt70BgKxLbtVzgY7Jno6i2EJtNuDuC81ZFtHWpsEaGF4bDmvRFV8OWPG4y"
+  }
+}

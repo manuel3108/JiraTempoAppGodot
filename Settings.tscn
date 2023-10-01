@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ba0oi8hq5t6od"]
+[gd_scene load_steps=6 format=3 uid="uid://ba0oi8hq5t6od"]
 
 [ext_resource type="Script" path="res://JiraLoginButton.cs" id="1_71v4r"]
+[ext_resource type="Theme" uid="uid://tgo5filkwsei" path="res://theme.tres" id="1_ij2ma"]
 [ext_resource type="Script" path="res://SettingsWindow.cs" id="1_n8jjf"]
 [ext_resource type="Script" path="res://FetchDataButton.cs" id="2_h3i0o"]
 [ext_resource type="Script" path="res://TempoLoginButton.cs" id="3_bf4yu"]
@@ -13,88 +14,153 @@ anchor_right = 0.9
 anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ij2ma")
 script = ExtResource("1_n8jjf")
-CloseWindowButtonNodePath = NodePath("ScrollContainer/VBoxContainer/CloseButton")
-JiraClientIdNodePath = NodePath("ScrollContainer/VBoxContainer/Jira ClientId/LineEdit")
-JiraClientSecretNodePath = NodePath("ScrollContainer/VBoxContainer/Jira ClientSecret/LineEdit")
-TempoClientIdNodePath = NodePath("ScrollContainer/VBoxContainer/Tempo ClientId/LineEdit")
-TempoClientSecretNodePath = NodePath("ScrollContainer/VBoxContainer/Tempo ClientSecret/LineEdit")
+CloseWindowButtonNodePath = NodePath("VBoxContainer/CloseButton")
+JiraAccessTokenNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira AccessToken/LineEdit")
+JiraClientIdNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientId/LineEdit")
+JiraClientSecretNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientSecret/LineEdit")
+JiraCloudIdNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira CloudId/LineEdit")
+JiraDomainNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira Domain/LineEdit")
+JiraExpiresInNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ExpiresIn/LineEdit")
+JiraRefreshTokenNodePath = NodePath("VBoxContainer/TabContainer/Jira/VBoxContainer/Jira RefreshToken/LineEdit")
+TempoAccessTokenNodePath = NodePath("VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo AccessToken/LineEdit")
+TempoClientIdNodePath = NodePath("VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientId/LineEdit")
+TempoClientSecretNodePath = NodePath("VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientSecret/LineEdit")
+TempoExpiresInNodePath = NodePath("VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ExpiresIn/LineEdit")
+TempoRefreshTokenNodePath = NodePath("VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo RefreshToken/LineEdit")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "My Settings"
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Jira" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Jira"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Settings Text" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "My Settings"
-
-[node name="Jira Settigns Text" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="Jira Settigns Text" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 text = "Jira Settings"
 
-[node name="Jira ClientId" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Jira ClientId" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Jira ClientId"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientId"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
 text = "ClientId "
 
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Jira ClientId"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientId"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Jira ClientSecret" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Jira ClientSecret" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Jira ClientSecret"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientSecret"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
 text = "ClientSecret"
 
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Jira ClientSecret"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ClientSecret"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Tempo Settigns Text" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-text = "Tempo Settings"
-
-[node name="Tempo ClientId" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Jira AccessToken" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Tempo ClientId"]
-layout_mode = 2
-text = "ClientId "
-
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Tempo ClientId"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira AccessToken"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "AccesToken"
 
-[node name="Tempo ClientSecret" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/Tempo ClientSecret"]
-layout_mode = 2
-text = "ClientSecret"
-
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer/Tempo ClientSecret"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira AccessToken"]
 layout_mode = 2
 size_flags_horizontal = 3
+editable = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="Jira RefreshToken" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 
-[node name="JiraLoginButton" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira RefreshToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "RefreshToken"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira RefreshToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Jira ExpiresIn" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ExpiresIn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "ExpiresIn"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira ExpiresIn"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Jira CloudId" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira CloudId"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "CloudId"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira CloudId"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Jira Domain" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "Domain"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/Jira Domain"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
+layout_mode = 2
+
+[node name="JiraLoginButton" type="Button" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Jira Login"
 script = ExtResource("1_71v4r")
 
-[node name="FetchDataButton" type="Button" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="FetchDataButton" type="Button" parent="VBoxContainer/TabContainer/Jira/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Fetch Data Button"
@@ -102,19 +168,100 @@ script = ExtResource("2_h3i0o")
 LabelPath = NodePath("../../Label")
 SearchTextEditPath = NodePath("../../LineEdit")
 
-[node name="LineEdit" type="LineEdit" parent="ScrollContainer/VBoxContainer"]
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 text = "Test"
 
-[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Jira/VBoxContainer"]
 layout_mode = 2
 text = "asd"
 
-[node name="TempoLoginButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="Tempo" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+layout_mode = 2
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TabContainer/Tempo"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Tempo Settigns Text" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+text = "Tempo Settings"
+
+[node name="Tempo ClientId" type="HBoxContainer" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientId"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "ClientId "
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientId"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tempo ClientSecret" type="HBoxContainer" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientSecret"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "ClientSecret"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ClientSecret"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Tempo AccessToken" type="HBoxContainer" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo AccessToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "AccessToken"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo AccessToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Tempo RefreshToken" type="HBoxContainer" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo RefreshToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "RefreshToken"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo RefreshToken"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="Tempo ExpiresIn" type="HBoxContainer" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ExpiresIn"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+text = "ExpiresIn"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer/Tempo ExpiresIn"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[node name="TempoLoginButton" type="Button" parent="VBoxContainer/TabContainer/Tempo/VBoxContainer"]
 layout_mode = 2
 text = "Tempo Login"
 script = ExtResource("3_bf4yu")
 
-[node name="CloseButton" type="Button" parent="ScrollContainer/VBoxContainer"]
+[node name="CloseButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Close"

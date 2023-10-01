@@ -27,8 +27,7 @@ public static class UrlCallbackServer
         response.StatusDescription = "Status OK";
 
         // return response text
-        var data = ResponseText;
-        var buffer = Encoding.UTF8.GetBytes(data);
+        var buffer = Encoding.UTF8.GetBytes(ResponseText);
         response.ContentLength64 = buffer.Length;
         using var responseOutputStream = response.OutputStream;
         responseOutputStream.Write(buffer, 0, buffer.Length);
