@@ -42,7 +42,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Jira" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 follow_focus = true
 
@@ -177,6 +176,7 @@ layout_mode = 2
 text = "asd"
 
 [node name="Tempo" type="ScrollContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
 follow_focus = true
 

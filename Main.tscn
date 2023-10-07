@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b3xofltp22i2c"]
+[gd_scene load_steps=9 format=3 uid="uid://b3xofltp22i2c"]
 
 [ext_resource type="Script" path="res://Main.cs" id="1_83qgm"]
 [ext_resource type="Theme" uid="uid://tgo5filkwsei" path="res://theme.tres" id="1_ymnkf"]
 [ext_resource type="PackedScene" uid="uid://cbwkyjnk71mfp" path="res://TopBar.tscn" id="2_3ts1y"]
-[ext_resource type="PackedScene" uid="uid://wywm27gdwd78" path="res://TimeTrackingEntry.tscn" id="3_3upml"]
+[ext_resource type="PackedScene" uid="uid://wywm27gdwd78" path="res://Worklog.tscn" id="3_3upml"]
 [ext_resource type="PackedScene" uid="uid://ba0oi8hq5t6od" path="res://Settings.tscn" id="3_asuod"]
+[ext_resource type="Script" path="res://WorklogList.cs" id="4_0o65o"]
 [ext_resource type="Script" path="res://OpenSettingsButton.cs" id="4_rpdin"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ir2w"]
@@ -22,28 +23,39 @@ grow_vertical = 2
 theme = ExtResource("1_ymnkf")
 theme_override_styles/panel = SubResource("StyleBoxFlat_4ir2w")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main Page"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Main Page"]
 layout_mode = 2
+follow_focus = true
 
-[node name="Control" parent="Main Page/VBoxContainer" instance=ExtResource("2_3ts1y")]
+[node name="VBoxContainer" type="VBoxContainer" parent="Main Page/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control" parent="Main Page/ScrollContainer/VBoxContainer" instance=ExtResource("2_3ts1y")]
 layout_mode = 2
 size_flags_vertical = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main Page/VBoxContainer"]
+[node name="Content" type="VBoxContainer" parent="Main Page/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TimeTrackingEntry" parent="Main Page/VBoxContainer/VBoxContainer" instance=ExtResource("3_3upml")]
+[node name="WorklogList" type="VBoxContainer" parent="Main Page/ScrollContainer/VBoxContainer/Content"]
+layout_mode = 2
+script = ExtResource("4_0o65o")
+AddWorklogButtonNodePath = NodePath("../AddWorklog")
+
+[node name="Worklog" parent="Main Page/ScrollContainer/VBoxContainer/Content/WorklogList" instance=ExtResource("3_3upml")]
 layout_mode = 2
 
-[node name="AddWorklog" type="Button" parent="Main Page/VBoxContainer/VBoxContainer"]
+[node name="AddWorklog" type="Button" parent="Main Page/ScrollContainer/VBoxContainer/Content"]
 layout_mode = 2
 text = "Add Worklog"
 
-[node name="OpenSettings" type="Button" parent="Main Page/VBoxContainer/VBoxContainer"]
+[node name="OpenSettings" type="Button" parent="Main Page/ScrollContainer/VBoxContainer/Content"]
 layout_mode = 2
 text = "Open Settings"
 script = ExtResource("4_rpdin")
-SettingsNodePath = NodePath("../../../../Settings")
+SettingsNodePath = NodePath("../../../../../Settings")
 
 [node name="Settings" parent="." instance=ExtResource("3_asuod")]
 visible = false
