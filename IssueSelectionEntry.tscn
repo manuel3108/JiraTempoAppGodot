@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://ba4gsitxdefk2"]
+
+[ext_resource type="Theme" uid="uid://tgo5filkwsei" path="res://theme.tres" id="1_lmhxy"]
+[ext_resource type="Script" path="res://IssueSelectionEntry.cs" id="2_yt0mc"]
+
+[node name="IssueSelectionEntry" type="HBoxContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 182.0
+grow_horizontal = 2
+size_flags_vertical = 3
+theme = ExtResource("1_lmhxy")
+script = ExtResource("2_yt0mc")
+SelectButtonNodePath = NodePath("Button")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "TEST-1: Mein Titel Mein TitelMein Titel asdasdasdasdasd"
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Select"

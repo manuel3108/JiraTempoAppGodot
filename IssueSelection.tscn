@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://dlgypfbk2c4ll"]
+
+[ext_resource type="Theme" uid="uid://tgo5filkwsei" path="res://theme.tres" id="1_bgb3x"]
+[ext_resource type="Script" path="res://IssueSelection.cs" id="2_ug5hr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8iasy"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[node name="IssueSelection" type="PanelContainer"]
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_bgb3x")
+theme_override_styles/panel = SubResource("StyleBoxFlat_8iasy")
+script = ExtResource("2_ug5hr")
+FullSearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/FullSearchResults")
+HistorySearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/HistorySearchResults")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HistorySearch" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "History Search"
+
+[node name="HistorySearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FullSearch" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Full Search"
+
+[node name="FullSearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
