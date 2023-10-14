@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using JiraTempoAppGodot.Events;
 
 namespace JiraTempoAppGodot;
 
@@ -10,7 +11,7 @@ public partial class IssueSelectionEntry : HBoxContainer
 
     [Export] public NodePath SelectButtonNodePath;
 
-    public event EventHandler MyEvent;
+    public event EventHandler<IssueSelectedEventArgs> IssueSelectedEvent;
 
     public override void _Ready()
     {
@@ -26,6 +27,14 @@ public partial class IssueSelectionEntry : HBoxContainer
     private void OnSelected()
     {
         GD.Print(_key, _title);
-        if (MyEvent != null) MyEvent(this, EventArgs.Empty);
+        if (IssueSelectedEvent != null)
+        {
+            var eventArgs = new IssueSelectedEventArgs
+            {
+                Key = _key,
+                Title = _title
+            };
+            IssueSelectedEvent(this, eventArgs);
+        }
     }
 }

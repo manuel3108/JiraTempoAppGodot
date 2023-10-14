@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Godot;
 using JiraTempoAppGodot;
 using JiraTempoAppGodot.ApiModels.Jira;
+using JiraTempoAppGodot.Events;
 
 public partial class IssueSelection : PanelContainer
 {
     [Export] public NodePath FullSearchContainerNodePath;
     [Export] public NodePath HistorySearchContainerNodePath;
+    public event EventHandler<IssueSelectedEventArgs> IssueSelectedEvent;
 
     public override void _Ready()
     {
@@ -29,7 +31,7 @@ public partial class IssueSelection : PanelContainer
 
             var scene = GD.Load<PackedScene>("res://IssueSelectionEntry.tscn");
             var issueSelectionEntry = scene.Instantiate<IssueSelectionEntry>();
-            issueSelectionEntry.MyEvent += OnEventHappend;
+            issueSelectionEntry.IssueSelectedEvent += OnIssueSelected;
             var textLabel = issueSelectionEntry.GetChild<Label>(0);
             textLabel.Text = $"{issue.Key}: {issue.SummaryText}";
             container.AddChild(issueSelectionEntry);
@@ -44,8 +46,8 @@ public partial class IssueSelection : PanelContainer
         }
     }
 
-    private void OnEventHappend(object sender, EventArgs e)
+    private void OnIssueSelected(object sender, IssueSelectedEventArgs e)
     {
-        GD.Print("MyEvent");
+        if (IssueSelectedEvent is not null) IssueSelectedEvent(sender, e);
     }
 }

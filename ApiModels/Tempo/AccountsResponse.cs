@@ -76,7 +76,7 @@ public class AccountsResponse
 
         [JsonProperty("key")] public string Key { get; set; }
 
-        [JsonProperty("lead")] public string Lead { get; set; }
+        [JsonProperty("lead")] public Lead Lead { get; set; }
 
         [JsonProperty("links")] public Links Links { get; set; }
 
@@ -92,5 +92,11 @@ public class AccountsResponse
     public class Type
     {
         [JsonProperty("name")] public string Name { get; set; }
+    }
+
+    public class Lead
+    {
+        public string Self { get; set; }
+        public string AccountId { get; set; }
     }
 }
