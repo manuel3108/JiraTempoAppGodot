@@ -56,20 +56,38 @@ public class TempoService : IService
         return ExecuteRequest<AccountsResponse>("accounts");
     }
 
-    private T ExecuteRequest<T>(string path) where T : class
+    public CreateWorklogResponse CreateWorklog(CreateWorklogRequest data)
+    {
+        return ExecuteRequest<CreateWorklogResponse>("worklogs", data);
+    }
+
+    private T ExecuteRequest<T>(string path, object data = null) where T : class
     {
         var settings = Settings.Load();
 
         var url = $"{Host}/{ApiVersion}/{path}";
         _httpClient.DefaultRequestHeaders.Authorization =
             new AuthenticationHeaderValue("Bearer", settings.Tempo.AccessToken);
-        var response = _httpClient.GetAsync(url).Result;
+
+        HttpResponseMessage response = null;
+
+        if (data is null)
+        {
+            response = _httpClient.GetAsync(url).Result;
+        }
+        else
+        {
+            var dataStringRequest = JsonConvert.SerializeObject(data);
+            var content = new StringContent(dataStringRequest);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            response = _httpClient.PostAsync(url, content).Result;
+        }
 
         var dataString = response.Content.ReadAsStringAsync().Result;
         return JsonConvert.DeserializeObject<T>(dataString);
     }
 
-    public object GetWorklogs()
+    public WorklogsResponse GetWorklogs()
     {
         return ExecuteRequest<WorklogsResponse>("worklogs?from=2022-01-28&to=2024-02-03");
     }

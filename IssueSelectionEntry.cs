@@ -6,6 +6,7 @@ namespace JiraTempoAppGodot;
 
 public partial class IssueSelectionEntry : HBoxContainer
 {
+    private int _issueId;
     private string _key;
     private string _title;
 
@@ -18,10 +19,11 @@ public partial class IssueSelectionEntry : HBoxContainer
         GetNode<Button>(SelectButtonNodePath).Pressed += OnSelected;
     }
 
-    public void SetData(string key, string title)
+    public void SetData(string key, string title, int issueId)
     {
         _key = key;
         _title = title;
+        _issueId = issueId;
     }
 
     private void OnSelected()
@@ -32,7 +34,8 @@ public partial class IssueSelectionEntry : HBoxContainer
             var eventArgs = new IssueSelectedEventArgs
             {
                 Key = _key,
-                Title = _title
+                Title = _title,
+                Id = _issueId
             };
             IssueSelectedEvent(this, eventArgs);
         }

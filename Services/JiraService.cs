@@ -83,6 +83,11 @@ public class JiraService : IService
         return ExecuteRequest<SearchIssuesResponse>($"issue/picker?query={query}&currentJQL=");
     }
 
+    public ProfileResponse GetProfile()
+    {
+        return ExecuteRequest<ProfileResponse>("myself");
+    }
+
     private T ExecuteRequest<T>(string path) where T : class
     {
         var settings = Settings.Load();

@@ -13,8 +13,12 @@ offset_bottom = 280.0
 grow_horizontal = 2
 theme = ExtResource("1_e5lpv")
 script = ExtResource("2_qy7t6")
+AccountOptionButtonNodePath = NodePath("HBoxContainer/Left/Account")
 AddTimeEntryButtonNodePath = NodePath("HBoxContainer/Right/AddTimeEntry")
+BookWorklogButtonNodePath = NodePath("HBoxContainer/Right/BookTime")
 TimeEntriesContainerNodePath = NodePath("HBoxContainer/Right/TimeEntries")
+TitleLineEditNodePath = NodePath("HBoxContainer/Left/Title")
+DescriptionTextEditNodePath = NodePath("HBoxContainer/Left/Description")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -29,14 +33,10 @@ layout_mode = 2
 placeholder_text = "Title"
 script = ExtResource("3_lk3qb")
 IssueSelectionPanelNodePath = NodePath("../../../Node/IssueSelection")
+WorklogPanelNodePath = NodePath("../../..")
 
 [node name="Account" type="OptionButton" parent="HBoxContainer/Left"]
 layout_mode = 2
-item_count = 2
-popup/item_0/text = "Test"
-popup/item_0/id = 0
-popup/item_1/text = "Test"
-popup/item_1/id = 1
 
 [node name="Description" type="TextEdit" parent="HBoxContainer/Left"]
 custom_minimum_size = Vector2(0, 150)

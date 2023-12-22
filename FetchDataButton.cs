@@ -28,8 +28,5 @@ public partial class FetchDataButton : Button
 
         var worklogs = _tempoService.GetWorklogs();
         GD.Print(JsonConvert.SerializeObject(worklogs));
-
-        var accounts = _tempoService.GetAccounts();
-        GD.Print(JsonConvert.SerializeObject(accounts));
     }
 }

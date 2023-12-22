@@ -28,7 +28,7 @@ public partial class WorklogTitle : LineEdit
         _selectionPanel.Hide();
         GrabFocus();
 
-        _worklogPanel.IssueSelected();
+        _worklogPanel.IssueSelected(e.Id);
     }
 
     private void OnTextSubmitted(string newText)

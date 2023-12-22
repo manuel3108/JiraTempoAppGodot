@@ -35,7 +35,7 @@ public partial class IssueSelection : PanelContainer
             var textLabel = issueSelectionEntry.GetChild<Label>(0);
             textLabel.Text = $"{issue.Key}: {issue.SummaryText}";
             container.AddChild(issueSelectionEntry);
-            issueSelectionEntry.SetData(issue.Key, issue.SummaryText);
+            issueSelectionEntry.SetData(issue.Key, issue.SummaryText, issue.Id);
 
             if (isFirst)
             {
