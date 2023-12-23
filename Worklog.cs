@@ -51,9 +51,11 @@ public partial class Worklog : PanelContainer
             Attributes = new List<CreateWorklogRequest.Attribute>
             {
                 new() { Key = "_Account_", Value = selectedAccount.Key }
-            }   
+            }
         };
         _tempoService.CreateWorklog(createWorklogRequest);
+
+        GD.Print("Entry booked!");
     }
 
     private void AddNewTimeEntryRow()
@@ -68,8 +70,32 @@ public partial class Worklog : PanelContainer
     {
         _selectedIssueId = issueId;
         var accountResults = _tempoService.GetAccounts();
+        var issueMeta = _jiraService.GetIssueMeta(_selectedIssueId);
+        var tempoFieldName = _jiraService.GetTempoFieldName(issueMeta);
+        var issueDetails = _jiraService.GetIssueDetails(_selectedIssueId);
+        var defaultAccount = _jiraService.GetDefaultAccount(issueDetails, tempoFieldName);
 
         var accountOptionButton = GetNode<OptionButton>(AccountOptionButtonNodePath);
-        foreach (var account in accountResults.Results) accountOptionButton.AddItem(account.Name, account.Id);
+
+        var itemCount = accountOptionButton.ItemCount;
+        for (var j = 1; j < itemCount; j++)
+
+        {
+            // keep first option "please select", remove everything else
+            // as the indexes are reduced even during the the loop, it is enough
+            // to always remove from index 1
+            accountOptionButton.RemoveItem(1);
+        }
+
+        var i = 1;
+        accountOptionButton.Selected = 0;
+        foreach (var account in accountResults.Results)
+        {
+            accountOptionButton.AddItem(account.Name, account.Id);
+
+            if (account.Name == defaultAccount) accountOptionButton.Selected = i;
+
+            i++;
+        }
     }
 }

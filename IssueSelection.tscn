@@ -17,8 +17,8 @@ grow_vertical = 2
 theme = ExtResource("1_bgb3x")
 theme_override_styles/panel = SubResource("StyleBoxFlat_8iasy")
 script = ExtResource("2_ug5hr")
-FullSearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/FullSearchResults")
-HistorySearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/HistorySearchResults")
+FullSearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer/FullSearchResults")
+HistorySearchContainerNodePath = NodePath("ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer/HistorySearchResults")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 2
@@ -26,19 +26,32 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 0
 
-[node name="HistorySearch" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="HistorySearch" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 text = "History Search"
 
-[node name="HistorySearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="HistorySearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FullSearch" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FullSearch" type="Label" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Full Search"
 
-[node name="FullSearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer"]
+[node name="FullSearchResults" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3

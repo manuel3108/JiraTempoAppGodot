@@ -16,6 +16,7 @@ alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2
+focus_mode = 0
 text = "Now"
 script = ExtResource("2_ugf7n")
 InputFieldNodePath = NodePath("../LineEdit")
@@ -26,6 +27,7 @@ alignment = 1
 
 [node name="Button2" type="Button" parent="."]
 layout_mode = 2
+focus_mode = 0
 text = "Now"
 script = ExtResource("2_ugf7n")
 InputFieldNodePath = NodePath("../LineEdit2")

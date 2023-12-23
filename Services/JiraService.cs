@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Godot;
 using JiraTempoAppGodot.ApiModels.Jira;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using HttpClient = System.Net.Http.HttpClient;
 
 namespace JiraTempoAppGodot.Services;
@@ -88,6 +90,11 @@ public class JiraService : IService
         return ExecuteRequest<ProfileResponse>("myself");
     }
 
+    public IssueMeta GetIssueMeta(int issueId)
+    {
+        return ExecuteRequest<IssueMeta>($"issue/{issueId}/editmeta");
+    }
+
     private T ExecuteRequest<T>(string path) where T : class
     {
         var settings = Settings.Load();
@@ -118,5 +125,33 @@ public class JiraService : IService
         response = _httpClient.GetAsync(url).Result;
         var dataString2 = response.Content.ReadAsStringAsync().Result;
         return JsonConvert.DeserializeObject<T>(dataString2);
+    }
+
+    public string GetTempoFieldName(IssueMeta issueMeta)
+    {
+        var fields = issueMeta.Fields;
+
+        foreach (var (key, value) in fields)
+            if (value.Key == "io.tempo.jira__account")
+                return key;
+
+        throw new Exception("Tempo issue field not found");
+    }
+
+    public IssueDetails GetIssueDetails(int issueId)
+    {
+        return ExecuteRequest<IssueDetails>($"issue/{issueId}");
+    }
+
+    public string GetDefaultAccount(IssueDetails issueDetails, string tempoFieldName)
+    {
+        if (!issueDetails.FieldsData.ContainsKey(tempoFieldName))
+            return null;
+
+        var data = (JObject)issueDetails.FieldsData[tempoFieldName];
+        if (data is null)
+            return null;
+
+        return data["value"]?.ToString();
     }
 }

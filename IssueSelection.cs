@@ -29,6 +29,8 @@ public partial class IssueSelection : PanelContainer
         {
             var container = GetNode<Container>(containerPath);
 
+            foreach (var child in container.GetChildren()) child.QueueFree();
+
             var scene = GD.Load<PackedScene>("res://IssueSelectionEntry.tscn");
             var issueSelectionEntry = scene.Instantiate<IssueSelectionEntry>();
             issueSelectionEntry.IssueSelectedEvent += OnIssueSelected;
